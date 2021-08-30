@@ -1,0 +1,59 @@
+---
+layout: default
+---
+
+<style>
+span a {font-size:13px}
+iframe {margin:0 !important}
+</style>
+
+<b><a href='/'>거래소별 실시간 시세</a></b><br>
+<span><a href='/desktop'>데스크톱 전환</a><a href='http://stock.1002.pw' style='float:right'>미국주식 실시간시세</a></span><br>
+
+	<form style='padding:0;margin:0' action="/search" method="get">
+		<input type="text" placeholder="BITHUMB:BTCKRW" name="q" style="outline:none;width:100%;padding:30px !important;height:45px;border:0;box-sizing:border-box" required size="50" maxlength="255">
+	</form>
+
+
+<style>
+.gsc-above-wrapper-area {display:none}
+.gs-result .gs-image, .gs-result .gs-promotion-image {border:0 !important;height:60px !important}
+.gsc-control-cse {padding:0 !important}
+
+#b {position:relative;bottom:30px;left:20px;color:#fff;font-size:15px}
+@media (max-width:1024px) {
+}
+
+.embed-footer, ng-include, .fe_title {display:none !important}
+
+</style>
+
+<script>
+	function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+var uid = getParameterByName('q').toUpperCase();
+
+document.write("\
+<iframe src=\"https://s.tradingview.com/mediumwidgetembed/?symbols="+uid+"&locale=kr&trendLineColor=%232962FF&underLineBottomColor=rgba(41%2C%2098%2C%20255%2C%200)&underLineColor=rgba(41%2C%2098%2C%20255%2C%200.3)&fontColor=%23787B86&gridLineColor=rgba(240%2C%20243%2C%20250%2C%200)&width=100%25&height=400px&colorTheme=light&utm_source=aelw.github.io&utm_medium=widget&utm_campaign=symbol-overview\n\
+\" style='height:300px;width:100%;border:0'></iframe>");
+
+document.write("\
+<iframe width=\"100%\" height=\"350\" src=\"https://s.tradingview.com/widgetembed/?frameElementId=tradingview_373ee&symbol="+uid+"&interval=5&symboledit=1&saveimage=1&toolbarbg=f1f3f6&studies=%5B%5D&theme=light&style=1&timezone=Etc%2FUTC&studies_overrides=%7B%7D&overrides=%7B%7D&enabled_features=%5B%5D&disabled_features=%5B%5D&locale=kr&utm_source=http://stock.1002.pw&utm_medium=widget&utm_campaign=chart&utm_term=AAPL\" frameborder=\"0\"></iframe>");
+</script>
+
+<div id="disqus_thread"></div>
+<script>
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://silsigan-migug-jusig.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<script id="dsq-count-scr" src="//silsigan-migug-jusig.disqus.com/count.js" async></script>
+</span></div>
