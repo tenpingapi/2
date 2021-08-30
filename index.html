@@ -12,7 +12,7 @@ layout: default
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2aadb4b08f7f53980d7b7ff01e5b8773"></script>
 <script>
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapCenter = new kakao.maps.LatLng(33.458109809056104, 126.94135827133125), // 지도의 중심좌표
+    mapCenter = new kakao.maps.LatLng(33.47284837820563, 126.92967612071817), // 지도의 중심좌표
     mapOption = {
         center: mapCenter, // 지도의 중심좌표
         level: 3 // 지도의 확대 레벨
@@ -31,7 +31,7 @@ content += '    </div>';
 content += '</div>';
 
 // 커스텀 오버레이가 표시될 위치입니다 
-var position = new kakao.maps.LatLng(33.458109809056104, 126.94135827133125);
+var position = new kakao.maps.LatLng(33.47284837820563, 126.92967612071817);
 
 // 커스텀 오버레이를 생성합니다
 var mapCustomOverlay = new kakao.maps.CustomOverlay({
