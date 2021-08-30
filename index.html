@@ -1,47 +1,6 @@
 ---
 layout: default
 ---
-
-<style>
-span a {font-size:13px}
-iframe {margin:0 !important}
-</style>
-
-<b><a href='/'>거래소별 실시간 시세</a></b><br>
-<span><a href='/desktop'>데스크톱 전환</a><a href='http://stock.1002.pw' style='float:right'>미국주식 실시간시세</a></span><br>
-
-	<form style='padding:0;margin:0' action="/search" method="get">
-		<input type="text" placeholder="BITHUMB:BTCKRW" name="q" style="outline:none;width:100%;padding:30px !important;height:45px;border:0;box-sizing:border-box" required size="50" maxlength="255">
-	</form>
-
-<style>
-.gsc-above-wrapper-area {display:none}
-.gs-result .gs-image, .gs-result .gs-promotion-image {border:0 !important;height:60px !important}
-.gsc-control-cse {padding:0 !important}
-
-#b {position:relative;bottom:30px;left:20px;color:#fff;font-size:15px}
-@media (max-width:1024px) {
-}
-
-.embed-footer, ng-include, .fe_title {display:none !important}
-</style>
-
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script>
-	var data = [];
-            $.ajax({
-                url: 'http://tenping.kr/adbox/list?MemberID=Rc%2fg4Tm9iyAylA4x%2bMjZiBZlKBKO2rd8sIVajaEKNDoMYUeZO1woS%2f6bhcxMwwwW&PageSize=2&CampaignType=128&MinClickPoint=16&MinCurrentPoint=200&ExistMiddleImage=&ExistRectangleImage=&IsPartner=',
-                //data: { action: 'query', list: 'search', srsearch: 'asd', format: 'json' },
-                dataType: 'jsonp',
-                success: processResult
-            });
-  function processResult(apiResult){
-     str = '<a href="'+apiResult.List[0].Link+'"><img id="banner" src="'+apiResult.List[0].MImage+'"></a>'
-    $("#result").html(str);
-	//html(apiResult.List[0].MImage
-  }
-</script>
-aa
 <!DOCTYPE html>
 <html> 
 <head>
@@ -88,13 +47,13 @@ aa
         
     </style>
 </head>
- 
+
 <body>
     <div id="map"></div>
- 
+
     <script type="text/javascript">
         function initMap() {
- 
+
             //지도 스타일
             var map = new google.maps.Map(document.getElementById('map'), {
                 
@@ -107,7 +66,7 @@ aa
                 //처음 줌 값. 숫자가 작을수록 낮은 배율
                 zoom: 13
             });
- 
+
             //마커 정보
             var locations = [
                 
@@ -124,47 +83,36 @@ aa
                 
                 
                 ]
- 
+
             
             
             //마커 이미지
             var customicon = 'http://drive.google.com/uc?export=view&id=1tZgPtboj4mwBYT6cZlcY36kYaQDR2bRM'
- 
+
             //인포윈도우
             var infowindow = new google.maps.InfoWindow();
- 
+
             //마커 생성
             var marker, i;
             for (i = 0; i < locations.length; i++) {
                 marker = new google.maps.Marker({
-                    
-                    //마커의 위치
                     position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                    
-                    //마커 아이콘
                     icon: customicon,
-                    
-                    //마커를 표시할 지도
                     map: map
                 });
- 
                 google.maps.event.addListener(marker, 'click', (function(marker, i) {
                     return function() {
-                        
-                        //html로 표시될 인포 윈도우의 내용
                         infowindow.setContent(locations[i][0]);
-                        
-                        //인포윈도우가 표시될 위치
                         infowindow.open(map, marker);
                     }
                 })(marker, i));
+
+
                 
                 if (marker) {
                     marker.addListener('click', function() {
-                        
-                        //중심 위치를 클릭된 마커의 위치로 변경
+                        //마커 클릭 시의 중심 위치 변화
                         map.setCenter(this.getPosition());
- 
                         //마커 클릭 시의 줌 변화
                         map.setZoom(14);
                     });
@@ -174,9 +122,5 @@ aa
     </script>
     
     <!-- key= 뒤에 API 키 입력 -->
-    <script src="https://maps.google.com/maps/api/js?key=AIzaSyCgI23-dZm8Ovuni3ZLMjm3gwXA5GE-CpM&callback=initMap" type="text/javascript" async defer></script>
+    <script src="https://maps.google.com/maps/api/js?key=&callback=initMap" type="text/javascript" async defer></script>
 </body></html>
-
-
-<div id="result"></div>
-		
