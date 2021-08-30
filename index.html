@@ -25,7 +25,9 @@ map.addOverlayMapTypeId(kakao.maps.MapTypeId.ROADVIEW); //지도 위에 로드�
 var rvContainer = document.getElementById('roadview'); //로드뷰를 표시할 div
 var rv = new kakao.maps.Roadview(rvContainer); //로드뷰 객체
 var rvClient = new kakao.maps.RoadviewClient(); //좌표로부터 로드뷰 파노ID를 가져올 로드뷰 helper객체
-
+    
+toggleRoadview(mapCenter);
+    
 // 커스텀 오버레이에 표시할 내용입니다
 // HTML 문자열 또는 Dom Element 입니다
 var content = '<div class="overlay_info">';
