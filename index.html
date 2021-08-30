@@ -39,17 +39,17 @@ var mapCustomOverlay = new kakao.maps.CustomOverlay({
 
 
     
-var cs = '<div class="overlay_info">';
+var content1 = '<div class="overlay_info">';
 content1 += '<a href="http://1.1002.pw/2" target="_blank"><img src="https://archive-webcams.windy.com/28/1622622728/day/full/1622622728@1630250248.jpg" width="100"></a>';
 content1 += '</div>';
 
 // 커스텀 오버레이가 표시될 위치입니다 
-var ps = new kakao.maps.LatLng(37.524040913590596, 126.91297715385667);
+var position1 = new kakao.maps.LatLng(37.524040913590596, 126.91297715385667);
 
 // 커스텀 오버레이를 생성합니다
-var ms = new kakao.maps.CustomOverlay({
-    position: position,
-    content: content,
+var mapCustomOverlay1 = new kakao.maps.CustomOverlay({
+    position: position1,
+    content: content1,
     xAnchor: 0.5, // 커스텀 오버레이의 x축 위치입니다. 1에 가까울수록 왼쪽에 위치합니다. 기본값은 0.5 입니다
     yAnchor: 1.5 // 커스텀 오버레이의 y축 위치입니다. 1에 가까울수록 위쪽에 위치합니다. 기본값은 0.5 입니다
 });    
