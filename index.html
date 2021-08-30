@@ -39,15 +39,15 @@ var mapCustomOverlay = new kakao.maps.CustomOverlay({
 
 
     
-var content1 = '<div class="overlay_info">';
+var cs = '<div class="overlay_info">';
 content1 += '<a href="http://1.1002.pw/2" target="_blank"><img src="https://archive-webcams.windy.com/28/1622622728/day/full/1622622728@1630250248.jpg" width="100"></a>';
 content1 += '</div>';
 
 // 커스텀 오버레이가 표시될 위치입니다 
-var position1 = new kakao.maps.LatLng(37.524040913590596, 126.91297715385667);
+var ps = new kakao.maps.LatLng(37.524040913590596, 126.91297715385667);
 
 // 커스텀 오버레이를 생성합니다
-var mapCustomOverlay1 = new kakao.maps.CustomOverlay({
+var ms = new kakao.maps.CustomOverlay({
     position: position,
     content: content,
     xAnchor: 0.5, // 커스텀 오버레이의 x축 위치입니다. 1에 가까울수록 왼쪽에 위치합니다. 기본값은 0.5 입니다
@@ -56,7 +56,7 @@ var mapCustomOverlay1 = new kakao.maps.CustomOverlay({
     
     
 // 커스텀 오버레이를 지도에 표시합니다
-mapCustomOverlay1.setMap(map);
+ms.setMap(map);
 mapCustomOverlay.setMap(map);
 
 var rvContainer = document.getElementById('roadview'); //로드뷰를 표시할 div
