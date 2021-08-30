@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "HELLOW WORLD!"
+title:  "이촌2동"
 date:   2021-08-22 22:17:10 +0800
 categories: jekyll update
 ---
-HELLOW WORLD!
+<a name="windy-webcam-timelapse-player" data-id="1625665467" data-play="day" href="https://windy.com/webcams/1625665467" target="_blank">이촌2동</a><script async type="text/javascript" src="https://webcams.windy.com/webcams/public/embed/script/player.js"></script>
