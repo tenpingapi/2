@@ -12,7 +12,7 @@ layout: default
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2aadb4b08f7f53980d7b7ff01e5b8773"></script>
 <script>
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapCenter = new kakao.maps.LatLng(33.47284837820563, 126.92967612071817), // 지도의 중심좌표
+    mapCenter = new kakao.maps.LatLng(37.52902127383431, 126.9495104116546), // 지도의 중심좌표
     mapOption = {
         center: mapCenter, // 지도의 중심좌표
         level: 3 // 지도의 확대 레벨
@@ -23,11 +23,11 @@ var map = new kakao.maps.Map(mapContainer, mapOption);
 // 커스텀 오버레이에 표시할 내용입니다
 // HTML 문자열 또는 Dom Element 입니다
 var content = '<div class="overlay_info">';
-content += '    <a href="https://place.map.kakao.com/17600274" target="_blank"><strong>성산리 일출봉</strong></a>';
+content += '    <a href="https://place.map.kakao.com/17600274" target="_blank"><strong>이촌2동</strong></a>';
 content += '</div>';
 
 // 커스텀 오버레이가 표시될 위치입니다 
-var position = new kakao.maps.LatLng(33.47284837820563, 126.92967612071817);
+var position = new kakao.maps.LatLng(37.52902127383431, 126.9495104116546);
 
 // 커스텀 오버레이를 생성합니다
 var mapCustomOverlay = new kakao.maps.CustomOverlay({
