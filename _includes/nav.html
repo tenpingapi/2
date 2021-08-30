@@ -1,0 +1,28 @@
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">{{ page.title }}</h1>
+
+    <p class="post-meta"></p>
+
+	<form style='padding:0;margin:0;' action="{{ page.url }}" method="get">
+		<input type="text" placeholder="검색" name="q" style="margin:5px 0 0;outline:none;width:100%;height:45px;border:0;box-sizing:border-box;padding:10px" required size="50" maxlength="255">
+	</form>
+
+  </header>
+
+<style>
+.gsc-above-wrapper-area {display:none}
+.gs-result .gs-image, .gs-result .gs-promotion-image {border:0 !important;height:60px !important}
+.gsc-control-cse {padding:0 !important}
+</style>
+  
+<script>
+if ( window.location.pathname == 'https://ae3a.github.io/' ) {
+     location.replace('https://ae3a.github.io/#gsc.q=블랙핑크');
+}
+if ( window.location.pathname == '{{ page.url }}' ) {
+     location.replace('{{ page.url }}#gsc.q={{ page.title }}');
+}
+if ( window.location.pathname == '{{ page.url }}.html' ) {
+     location.replace('{{ page.url }}.html#gsc.q={{ page.title }}');
+}
+</script>
