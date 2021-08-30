@@ -2,121 +2,82 @@
 layout: default
 ---
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>google map API TEST</title>
+<style>
+    .overlay_info {border-radius: 6px; margin-bottom: 12px; float:left;position: relative; border: 1px solid #ccc; border-bottom: 2px solid #ddd;background-color:#fff;}
+    .overlay_info:nth-of-type(n) {border:0; box-shadow: 0px 1px 2px #888;}
+    .overlay_info a {display: block; background: #d95050; background: #d95050 url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center; text-decoration: none; color: #fff; padding:12px 36px 12px 14px; font-size: 14px; border-radius: 6px 6px 0 0}
+    .overlay_info a strong {background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/place_icon.png) no-repeat; padding-left: 27px;}
+    .overlay_info .desc {padding:14px;position: relative; min-width: 190px; height: 56px}
+    .overlay_info img {vertical-align: top;}
+    .overlay_info .address {font-size: 12px; color: #333; position: absolute; left: 80px; right: 14px; top: 24px; white-space: normal}
+    .overlay_info:after {content:'';position: absolute; margin-left: -11px; left: 50%; bottom: -12px; width: 22px; height: 12px; background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png) no-repeat 0 bottom;}
+</style>
+
+<div id="map" style="width:100%;height:350px"></div> <!-- 지도를 표시할 div 입니다 -->
+<div id="roadview" style="width:100%;height:300px"></div> <!-- 로드뷰를 표시할 div 입니다 -->
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2aadb4b08f7f53980d7b7ff01e5b8773"></script>
+<script>
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapCenter = new kakao.maps.LatLng(33.5563, 126.7958), // 지도의 중심좌표
+    mapOption = {
+        center: mapCenter, // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };
+
+var map = new kakao.maps.Map(mapContainer, mapOption);
+
+// 커스텀 오버레이에 표시할 내용입니다
+// HTML 문자열 또는 Dom Element 입니다
+var content = '<div class="overlay_info">';
+content += '    <a href="https://place.map.kakao.com/17600274" target="_blank"><strong>월정리 해수욕장</strong></a>';
+content += '    <div class="desc">';
+content += '        <img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/place_thumb.png" alt="">';
+content += '        <span class="address">제주특별자치도 제주시 구좌읍 월정리 33-3</span>';
+content += '    </div>';
+content += '</div>';
+
+// 커스텀 오버레이가 표시될 위치입니다 
+var position = new kakao.maps.LatLng(33.55635, 126.795841);
+
+// 커스텀 오버레이를 생성합니다
+var mapCustomOverlay = new kakao.maps.CustomOverlay({
+    position: position,
+    content: content,
+    xAnchor: 0.5, // 커스텀 오버레이의 x축 위치입니다. 1에 가까울수록 왼쪽에 위치합니다. 기본값은 0.5 입니다
+    yAnchor: 1.1 // 커스텀 오버레이의 y축 위치입니다. 1에 가까울수록 위쪽에 위치합니다. 기본값은 0.5 입니다
+});
+
+// 커스텀 오버레이를 지도에 표시합니다
+mapCustomOverlay.setMap(map);
+
+var rvContainer = document.getElementById('roadview'); //로드뷰를 표시할 div
+var rv = new kakao.maps.Roadview(rvContainer); //로드뷰 객체
+var rvClient = new kakao.maps.RoadviewClient(); //좌표로부터 로드뷰 파노ID를 가져올 로드뷰 helper객체
+
+//지도의 중심좌표와 가까운 로드뷰의 panoId를 추출하여 로드뷰를 띄운다.
+rvClient.getNearestPanoId(mapCenter, 50, function(panoId) {
+    rv.setPanoId(panoId, mapCenter); //panoId와 중심좌표를 통해 로드뷰 실행
+});
+
+kakao.maps.event.addListener(rv, 'init', function() {
+
+    // 커스텀 오버레이를 생성합니다
+    var rvCustomOverlay = new kakao.maps.CustomOverlay({
+        position: position,
+        content: content,
+        xAnchor: 0.5, // 커스텀 오버레이의 x축 위치입니다. 1에 가까울수록 왼쪽에 위치합니다. 기본값은 0.5 입니다
+        yAnchor: 0.5 // 커스텀 오버레이의 y축 위치입니다. 1에 가까울수록 위쪽에 위치합니다. 기본값은 0.5 입니다
+    });
+
+    //rvCustomOverlay.setAltitude(2); //커스텀 오버레이의 고도값을 설정합니다.(로드뷰 화면 중앙이 0입니다)
+    rvCustomOverlay.setMap(rv);
+
+    var projection = rv.getProjection(); // viewpoint(화면좌표)값을 추출할 수 있는 projection 객체를 가져옵니다.
     
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <style>
-        body {
-            overflow: hidden;
-        }
-        div#map {
-            width: 100vw; height: 100vh;
-        }
-        div.wrap {
-            width: 200px;
-        }
-        div.text-box {
-            text-align: center;
-        }
-        h4 {
-            margin: 10px auto 0;
-        }
-        div.img-box {
-            max-height: 100px;
-            overflow: hidden;
-        }
-        img {
-            width: 150px;
-            margin: -20px auto 0;
-        }
-        a {
-            text-decoration: none;
-            color: #000;
-        }
-        
-        
-        /* 확대/축소 등 구글 지도의 기본 UI 감추기 */
-        .gmnoprint, .gm-control-active.gm-fullscreen-control {
-            display: none;
-        }
-        
-    </style>
-</head>
+    // 커스텀오버레이의 position과 altitude값을 통해 viewpoint값(화면좌표)를 추출합니다.
+    var viewpoint = projection.viewpointFromCoords(rvCustomOverlay.getPosition(), rvCustomOverlay.getAltitude());
 
-<body>
-    <div id="map"></div>
-
-    <script type="text/javascript">
-        function initMap() {
-
-            //지도 스타일
-            var map = new google.maps.Map(document.getElementById('map'), {
-                
-                //처음 중심 좌표
-                center: {
-                    lat: 37.587624,
-                    lng: 126.976020
-                },
-                
-                //처음 줌 값. 숫자가 작을수록 낮은 배율
-                zoom: 13
-            });
-
-            //마커 정보
-            var locations = [
-                
-                //경복궁 마커
-                ['<div class="wrap"><div class="text-box"><h4>경복궁</h4><div class="img-box"><img src="https://image.shutterstock.com/image-vector/palace-icon-outline-vector-web-260nw-1046855677.jpg"></div><a target="_blank" href="https://www.royalpalace.go.kr/"><p>홈페이지 방문하기</p></a></div>', 37.577624, 126.976020],
-                
-                
-                //딸기케이크 마커
-                ['<div class="wrap"><div class="text-box"><h4>딸기케이크</h4><div class="img-box"><img src="https://media.istockphoto.com/vectors/piece-of-cake-with-strawberries-icon-element-of-bakery-icon-premium-vector-id931551700"></div><a target="_blank" href="https://noa-xyz.tistory.com"><p>홈페이지 방문하기</p></a></div>', 37.559524, 126.976710],
-                
-                
-                //창덕궁 마커
-                ['<a target="_blank" href="https://cdg.go.kr/">창덕궁 홈페이지</a>', 37.579711, 126.991043]
-                
-                
-                ]
-
-            
-            
-            //마커 이미지
-            var customicon = 'http://drive.google.com/uc?export=view&id=1tZgPtboj4mwBYT6cZlcY36kYaQDR2bRM'
-
-            //인포윈도우
-            var infowindow = new google.maps.InfoWindow();
-
-            //마커 생성
-            var marker, i;
-            for (i = 0; i < locations.length; i++) {
-                marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                    icon: customicon,
-                    map: map
-                });
-                google.maps.event.addListener(marker, 'click', (function(marker, i) {
-                    return function() {
-                        infowindow.setContent(locations[i][0]);
-                        infowindow.open(map, marker);
-                    }
-                })(marker, i));
-
-
-                
-                if (marker) {
-                    marker.addListener('click', function() {
-                        //마커 클릭 시의 중심 위치 변화
-                        map.setCenter(this.getPosition());
-                        //마커 클릭 시의 줌 변화
-                        map.setZoom(14);
-                    });
-                }
-            }
-        }
-    </script>
-    
-    <script src="https://maps.google.com/maps/api/js?key=AIzaSyCgI23-dZm8Ovuni3ZLMjm3gwXA5GE-CpM&callback=initMap" type="text/javascript" async defer></script>
+    rv.setViewpoint(viewpoint); //커스텀 오버레이를 로드뷰의 가운데에 오도록 로드뷰의 시점을 변화 시킵니다.
+});
+</script>
