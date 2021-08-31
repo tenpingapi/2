@@ -1,1 +1,1 @@
-[https://tenpingapi.github.io](https://tenpingapi.github.io)
+[http://1.1002.pw/](http://1.1002.pw/)
